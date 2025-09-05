@@ -62,6 +62,79 @@ At the heart of RAG is the concept of **word embeddings** - converting human lan
 
 RAG operates through three distinct but interconnected steps:
 
+### RAG Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "User Interface"
+        A[User Query]
+    end
+    
+    subgraph "RAG System"
+        B[Query Embedding]
+        C[Vector Database Search]
+        D[Retrieve Relevant Chunks]
+        E[Augment Prompt]
+        F[LLM Generation]
+    end
+    
+    subgraph "Knowledge Base"
+        G[Documents]
+        H[Text Chunking]
+        I[Chunk Embedding]
+        J[Vector Database Storage]
+    end
+    
+    subgraph "Output"
+        K[Response with Sources]
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> K
+    
+    G --> H
+    H --> I
+    I --> J
+    J --> C
+    
+    style A fill:#e1f5fe
+    style K fill:#e8f5e8
+    style G fill:#fff3e0
+    style J fill:#f3e5f5
+```
+
+### The Three-Step Process Flow
+
+```mermaid
+flowchart LR
+    subgraph "Step 1: Retrieval"
+        A1[User Query] --> A2[Query Embedding]
+        A2 --> A3[Semantic Search]
+        A3 --> A4[Relevant Chunks]
+    end
+    
+    subgraph "Step 2: Augmentation"
+        B1[Original Prompt] --> B2[Retrieved Context]
+        B2 --> B3[Augmented Prompt]
+    end
+    
+    subgraph "Step 3: Generation"
+        C1[Augmented Prompt] --> C2[LLM Processing]
+        C2 --> C3[Generated Response]
+    end
+    
+    A4 --> B2
+    B3 --> C1
+    
+    style A1 fill:#e3f2fd
+    style B3 fill:#f3e5f5
+    style C3 fill:#e8f5e8
+```
+
 ### 1. Retrieval
 
 The retrieval phase involves finding relevant information from the knowledge base:
@@ -186,6 +259,24 @@ uv                # Package management
 
 The ingestion process involves several critical steps:
 
+```mermaid
+graph TD
+    A[Raw Documents] --> B[Document Loading]
+    B --> C[Text Extraction]
+    C --> D[Text Preprocessing]
+    D --> E[Text Chunking]
+    E --> F[Chunk Metadata]
+    F --> G[Embedding Generation]
+    G --> H[Vector Storage]
+    H --> I[Index Creation]
+    I --> J[Ready for Retrieval]
+    
+    style A fill:#fff3e0
+    style J fill:#e8f5e8
+    style E fill:#f3e5f5
+    style G fill:#e1f5fe
+```
+
 **1. Document Processing:**
 - Load documents from various formats (PDF, Word, Markdown, etc.)
 - Extract text content
@@ -268,6 +359,44 @@ The ingestion process involves several critical steps:
 ### Chunking Strategy Optimization
 
 **Document Type Considerations:**
+
+```mermaid
+graph LR
+    subgraph "Document Types"
+        A1[Legal Documents]
+        A2[Technical Docs]
+        A3[Conversations]
+        A4[Code Documentation]
+    end
+    
+    subgraph "Chunking Methods"
+        B1[Paragraph-based<br/>800-1200 tokens]
+        B2[Section-based<br/>500-800 tokens]
+        B3[Sentence-based<br/>200-400 tokens]
+        B4[Function-based<br/>300-600 tokens]
+    end
+    
+    subgraph "Overlap Strategies"
+        C1[Low Overlap<br/>50-100 tokens]
+        C2[Medium Overlap<br/>100-200 tokens]
+        C3[High Overlap<br/>200-400 tokens]
+        C4[Context-aware<br/>Variable]
+    end
+    
+    A1 --> B1
+    A2 --> B2
+    A3 --> B3
+    A4 --> B4
+    
+    B1 --> C1
+    B2 --> C2
+    B3 --> C3
+    B4 --> C4
+    
+    style A1 fill:#fff3e0
+    style B2 fill:#e3f2fd
+    style C3 fill:#f3e5f5
+```
 
 **Legal Documents:**
 - Preserve paragraph structure
