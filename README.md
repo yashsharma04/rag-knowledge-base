@@ -140,14 +140,6 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-## 📞 Support
-
-If you have questions or need help with RAG implementation:
-
-1. Check the [documentation](docs/RAG_Explained_Comprehensive_Guide.md)
-2. Search existing [issues](https://github.com/yourusername/rag-knowledge-base/issues)
-3. Create a new issue with detailed information
-4. Join the discussion in [Discussions](https://github.com/yourusername/rag-knowledge-base/discussions)
 
 ---
 
