@@ -117,10 +117,6 @@ graph TD
 
 ## 📚 Additional Resources
 
-### Learning Materials
-- [Original Transcript Source](transcript-20250904-222003-141.txt) - The source material used for this guide
-- [Vector Database Comparison](https://example.com) - Detailed comparison of vector database options
-- [Embedding Model Benchmarks](https://example.com) - Performance comparisons
 
 ### Tools and Libraries
 - [LangChain](https://python.langchain.com/) - Framework for building LLM applications
